@@ -8,9 +8,18 @@ public class Voyageur extends Thread{
     }
 
     public void AcheterBillet(){
-        while(espaceVente == espaceVente){
-
+        while(espaceVente.billets == 0){
+            try{
+                this.wait();
+            }catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
         }
+        billet++;
+        espaceVente.vendre();
+        notifyAll();
+        System.out.println("Le Voyageur a acheté un billet");
     }
 
     public void monterTrain(){
