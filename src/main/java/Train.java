@@ -6,11 +6,11 @@ public class Train extends Thread{
     public boolean voieLibre;
     public int nbPlaceLibre;
 
-    public Train(int nbPlaceLibre){
+    public Train(){
         this.nbPlaceLibre = NB_PLACE_LIBRE;
     }
 
-    public void arriver(EspaceQuai espaceQuai){
+    public synchronized void arriver(EspaceQuai espaceQuai){
         while (espaceQuai.voieLibre()){
             try {
                 sleep(10000/VITESSE_TRAIN);
@@ -18,11 +18,18 @@ public class Train extends Thread{
                 throw new RuntimeException(e);
             }
         }
-
+        notifyAll();
+        System.out.println("Un train est arrivé en gare");
     }
 
-    public void depart(EspaceQuai espaceQuai){
+    public synchronized void depart(EspaceQuai espaceQuai){
+        try {
+            sleep(ARRET_TRAIN);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         espaceQuai.nbtrain --;
+        System.out.println("Un train a quitté la gare");
     }
 
     public void run(){
