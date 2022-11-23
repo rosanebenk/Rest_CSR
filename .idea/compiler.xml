@@ -10,6 +10,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="TP5" />
+        <module name="Rest_CSR" />
       </profile>
     </annotationProcessing>
   </component>
