@@ -2,9 +2,11 @@ public class Voyageur extends Thread{
 
     private int billet;
     public EspaceVente espaceVente;
-    public Voyageur(int billet, EspaceVente espacevente){
+    public EspaceQuai espaceQuai;
+    public Voyageur(int billet, EspaceVente espacevente, EspaceQuai espaceQuai){
         this.billet = billet;
         this.espaceVente = espacevente;
+        this.espaceQuai = espaceQuai;
     }
 
     public void AcheterBillet(){
@@ -23,7 +25,8 @@ public class Voyageur extends Thread{
     }
 
     public void monterTrain(){
-
+        this.espaceQuai.monter();
+        System.out.println("Le Voyageur monte dans le train");
     }
 
     public void run(){

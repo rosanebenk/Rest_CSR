@@ -40,6 +40,10 @@ public class Train extends Thread{
         return this.nbPlaceLibre == 0;
     }
 
+    public void voyageurMonte(){
+        nbPlaceLibre --;
+    }
+
     public void run(){
         while(true){
             this.arriver();
