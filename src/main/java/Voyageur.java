@@ -3,13 +3,13 @@ public class Voyageur extends Thread{
     private int billet;
     public EspaceVente espaceVente;
     public EspaceQuai espaceQuai;
-    public Voyageur(int billet, EspaceVente espacevente, EspaceQuai espaceQuai){
-        this.billet = billet;
+    public Voyageur(EspaceVente espacevente, EspaceQuai espaceQuai){
+        this.billet = 0;
         this.espaceVente = espacevente;
         this.espaceQuai = espaceQuai;
     }
 
-    public void AcheterBillet(){
+    public void acheterBillet(){
         while(espaceVente.billets == 0){
             try{
                 this.wait();
@@ -25,13 +25,17 @@ public class Voyageur extends Thread{
     }
 
     public void monterTrain(){
-        this.espaceQuai.monter();
-        System.out.println("Le Voyageur monte dans le train");
+        if(billet == 1){
+            this.espaceQuai.monter();
+            System.out.println("Le Voyageur monte dans le train");
+        }
     }
 
     public void run(){
         //Appel des fonctions
         // acheter billet
+        this.acheterBillet();
         // monter train
+        this.monterTrain();
     }
 }
