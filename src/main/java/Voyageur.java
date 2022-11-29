@@ -2,7 +2,7 @@ public class Voyageur extends Thread{
 
     private int billet;
     public EspaceVente espaceVente;
-    public Voyageur(int billetn, EspaceVente espacevente){
+    public Voyageur(int billet, EspaceVente espacevente){
         this.billet = billet;
         this.espaceVente = espacevente;
     }
