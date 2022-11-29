@@ -20,14 +20,14 @@ public class Train extends Thread{
                 throw new RuntimeException(e);
             }
         }
-
+        espaceQuai.nbvoielibre--;
         try {
             sleep(10000/VITESSE_TRAIN);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         arreter = true;
-        espaceQuai.nbvoielibre--;
+        
         notifyAll();
         System.out.println("Un train est arrivé en gare");
     }
