@@ -19,6 +19,7 @@ public class EspaceQuai {
                 }
             }
             train.voyageurMonte();
+            System.out.println("Place libre train" + train.nbPlaceLibre);
             notifyAll();
         }
 
