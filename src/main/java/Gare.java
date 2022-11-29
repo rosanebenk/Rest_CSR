@@ -7,11 +7,15 @@ public class Gare {
     private Train[] trains = new Train[NB_TRAIN];
     private Voyageur[] voyageurs = new Voyageur[NB_VOYAGEURS];
     private EspaceVente espace1,espace2;
+    private EspaceQuai quai ;
+    private Train train1,train2,train3;
 
     {
         try {
             espace1 = new EspaceVente(BILLET_TRAIN/2);
             espace2 = new EspaceVente(BILLET_TRAIN/2);
+            quai = new EspaceQuai();
+            train1 = new Train(EspaceQuai);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
