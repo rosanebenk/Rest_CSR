@@ -15,7 +15,7 @@ public class Gare {
             espace1 = new EspaceVente(BILLET_TRAIN/2);
             espace2 = new EspaceVente(BILLET_TRAIN/2);
             quai = new EspaceQuai();
-            train1 = new Train(EspaceQuai);
+            train1 = new Train(quai);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
