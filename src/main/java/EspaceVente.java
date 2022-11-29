@@ -26,7 +26,16 @@ public class EspaceVente extends Thread{
         Thread.sleep(500);
         billets+= BILLET_MAX - billets;
     }
-    public void run(){
+    public void run() {
+        while (true){
+            try {
+                vendre();
+                imprimer();
+            }catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
 
+        }
     }
 }

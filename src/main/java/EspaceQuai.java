@@ -18,7 +18,7 @@ public class EspaceQuai {
                     e.printStackTrace();
                 }
             }
-            train.voyaageurMonte();
+            train.voyageurMonte();
             notifyAll();
         }
 
