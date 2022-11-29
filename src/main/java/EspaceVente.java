@@ -9,7 +9,7 @@ public class EspaceVente extends Thread{
         this.billets = billets;
         else throw new Exception("Le nombre de billet max est 50");
     }
-    public void vendre( ){
+    public synchronized void  vendre( ){
         while (billets == 0){
             try{
                 this.wait();
@@ -20,22 +20,27 @@ public class EspaceVente extends Thread{
         }
         billets --;
         notifyAll();
-        System.out.println("Billet vendu");
-    }
-    public void imprimer() throws InterruptedException {
-        Thread.sleep(500);
-        billets+= BILLET_MAX - billets;
-    }
-    public void run() {
-        while (true){
-            try {
-                vendre();
-                imprimer();
-            }catch (InterruptedException e)
-            {
+        System.out.println("Billet vendu, restant : " + billets);
+        try{
+            Thread.sleep(500);
+        } catch (InterruptedException e){
                 e.printStackTrace();
-            }
-
         }
     }
+//    public void imprimer() throws InterruptedException {
+//        Thread.sleep(500);
+//        billets+= BILLET_MAX - billets;
+//    }
+//    public void run() {
+//        while (true){
+//            try {
+//                vendre();
+//                imprimer();
+//            }catch (InterruptedException e)
+//            {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//    }
 }

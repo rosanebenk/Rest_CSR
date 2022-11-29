@@ -11,19 +11,13 @@ public class Gare {
     private EspaceVente espace1,espace2;
     private EspaceQuai quai ;
 
-
-
-
-
-
-
     public Gare(){
         try {
             espace1 = new EspaceVente(BILLET_TRAIN/2);
             espace1.start();
             espace2 = new EspaceVente(BILLET_TRAIN/2);
             espace2.start();
-            quai = new EspaceQuai();
+            quai = new EspaceQuai(trains);
             for (int i = 0 ;i<NB_TRAIN; i++){
                 trains.add(new Train(quai));
             }
@@ -35,16 +29,20 @@ public class Gare {
                 }
 
             }
-            for (Voyageur v : voyageurs){
-                v.start();
-            }
             for (Train t: trains){
                 t.start();
             }
+            for (Voyageur v : voyageurs){
+                v.start();
+            }
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+    }
+    public  static void main (String[] args){
+        new Gare();
     }
 }

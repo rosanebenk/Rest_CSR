@@ -9,7 +9,7 @@ public class Voyageur extends Thread{
         this.espaceQuai = espaceQuai;
     }
 
-    public void acheterBillet(){
+    public synchronized void acheterBillet(){
         while(espaceVente.billets == 0){
             try{
                 this.wait();
@@ -18,16 +18,18 @@ public class Voyageur extends Thread{
                 e.printStackTrace();
             }
         }
-        billet++;
         espaceVente.vendre();
+        billet++;
         notifyAll();
         System.out.println("Le Voyageur a acheté un billet");
     }
 
-    public void monterTrain(){
+    public synchronized void monterTrain(){
         if(billet == 1){
             this.espaceQuai.monter();
-            System.out.println("Le Voyageur monte dans le train");
+            this.billet--;
+            this.espaceVente.billets++;
+            System.out.println("Le Voyageur monte dans le train, ses billets :" +billet);
         }
     }
 

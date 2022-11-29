@@ -13,14 +13,21 @@ public class Train extends Thread{
     }
 
     public synchronized void arriver(){
-        while (espaceQuai.voieLibre()){
+        while (!espaceQuai.voieLibre()){
             try {
-                sleep(10000/VITESSE_TRAIN);
+                this.wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+
+        try {
+            sleep(10000/VITESSE_TRAIN);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         arreter = true;
+        espaceQuai.nbvoielibre--;
         notifyAll();
         System.out.println("Un train est arrivé en gare");
     }
@@ -33,7 +40,8 @@ public class Train extends Thread{
         }
         espaceQuai.nbtrain --;
         arreter = false;
-        System.out.println("Un train a quitté la gare");
+        notifyAll();
+        System.out.println("Un train a quitté la gare , nbvoyageur : "+ (NB_PLACE_LIBRE-nbPlaceLibre));
     }
 
     public boolean estPlein(){
@@ -45,10 +53,10 @@ public class Train extends Thread{
     }
 
     public void run(){
-        while(true){
-            this.arriver();
-            this.depart();
-        }
+        System.out.println("train à l'approche");
+        this.arriver();
+        System.out.println("le train est arrivé");
+        this.depart();
 
     }
 }
