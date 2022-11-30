@@ -1,14 +1,14 @@
 public class Train extends Thread{
     private static int NB_PLACE_LIBRE = 25;
-    private static int ARRET_TRAIN = 100;
+    private static int ARRET_TRAIN = 200;
     private static int VITESSE_TRAIN = 250;
 
     public boolean arreter;
-    public int nbPlaceLibre;
+    public int voyageurs;
     public EspaceQuai espaceQuai;
 
     public Train(EspaceQuai espaceQuai){
-        this.nbPlaceLibre = NB_PLACE_LIBRE;
+        this.voyageurs = 0;
         this.espaceQuai = espaceQuai;
     }
 
@@ -20,16 +20,15 @@ public class Train extends Thread{
                 throw new RuntimeException(e);
             }
         }
-        espaceQuai.nbvoielibre--;
+        espaceQuai.affecterVoie(this);
         try {
             sleep(10000/VITESSE_TRAIN);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         arreter = true;
-        
         notifyAll();
-        System.out.println("Un train est arrivé en gare");
+        System.out.println(Thread.currentThread().getName() + "Un train est arrivé en gare , nb place " +voyageurs);
     }
 
     public synchronized void depart(){
@@ -38,18 +37,18 @@ public class Train extends Thread{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        espaceQuai.nbtrain --;
+        espaceQuai.libererVoie(this);
         arreter = false;
         notifyAll();
-        System.out.println("Un train a quitté la gare , nbvoyageur : "+ (NB_PLACE_LIBRE-nbPlaceLibre));
+        System.out.println(Thread.currentThread().getName() +" Un train a quitté la gare , nbvoyageur : "+ (NB_PLACE_LIBRE - voyageurs));
     }
 
     public boolean estPlein(){
-        return this.nbPlaceLibre == 0;
+        return this.voyageurs == NB_PLACE_LIBRE;
     }
 
     public void voyageurMonte(){
-        nbPlaceLibre --;
+        voyageurs ++;
     }
 
     public void run(){
@@ -57,6 +56,7 @@ public class Train extends Thread{
         this.arriver();
         System.out.println("le train est arrivé");
         this.depart();
+        System.out.println("train est parti");
 
     }
 }

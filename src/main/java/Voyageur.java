@@ -9,26 +9,25 @@ public class Voyageur extends Thread{
         this.espaceQuai = espaceQuai;
     }
 
-    public synchronized void acheterBillet(){
-        while(espaceVente.billets == 0){
-            try{
-                this.wait();
-            }catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-        }
+    public void acheterBillet(){
+//        while(espaceVente.billets == 0){
+//            try{
+//                this.wait();
+//            }catch (InterruptedException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        }
         espaceVente.vendre();
         billet++;
-        notifyAll();
-        System.out.println("Le Voyageur a acheté un billet");
+        System.out.println(Thread.currentThread().getName() +"Le Voyageur a acheté un billet , nb billet = "+ billet);
     }
 
     public synchronized void monterTrain(){
         if(billet == 1){
             this.espaceQuai.monter();
             this.billet--;
-            this.espaceVente.billets++;
+            this.espaceVente.libererbillet();
             System.out.println("Le Voyageur monte dans le train, ses billets :" +billet);
         }
     }
@@ -37,6 +36,11 @@ public class Voyageur extends Thread{
         //Appel des fonctions
         // acheter billet
         this.acheterBillet();
+//        try {
+//            sleep(100);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         // monter train
         this.monterTrain();
     }
