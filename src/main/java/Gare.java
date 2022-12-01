@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Gare {
     static final int BILLET_TRAIN = 100;
-    static final int NB_TRAIN = 5;
-    static final int NB_VOYAGEURS = 20;
+    static final int NB_TRAIN = 10;
+    static final int NB_VOYAGEURS = 200;
     private ArrayList<Train> trains = new ArrayList<Train>();
     private ArrayList<Voyageur> voyageurs = new ArrayList<Voyageur>();
     private EspaceVente espace1;
@@ -30,7 +30,12 @@ public class Gare {
                 t.start();
             }
 
+            for(Train t : trains){
+                t.join();
+            }
 
+            System.out.println("la gare est fermée , tous les trains sont partis et ne reviendront pas bisous");
+            System.exit(0);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
