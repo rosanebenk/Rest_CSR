@@ -1,11 +1,9 @@
 package internals;
 
-import internals.EspaceQuai;
-import internals.EspaceVente;
-
 public class Voyageur extends Thread{
 
-    private int billet;
+    private int id;
+    public int billet;
     public EspaceVente espaceVente;
     public EspaceQuai espaceQuai;
     public Voyageur(EspaceVente espacevente, EspaceQuai espaceQuai){
@@ -48,5 +46,14 @@ public class Voyageur extends Thread{
 //        }
         // monter train
         this.monterTrain();
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

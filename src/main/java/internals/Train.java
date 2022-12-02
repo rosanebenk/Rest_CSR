@@ -1,8 +1,7 @@
 package internals;
 
-import internals.EspaceQuai;
-
 public class Train extends Thread{
+    private long id;
     private static int NB_PLACE_LIBRE = 50;
     private static int ARRET_TRAIN = 500;
     private static int VITESSE_TRAIN = 250;
@@ -75,7 +74,7 @@ public class Train extends Thread{
     public void run(){
         System.out.println("train à l'approche");
         this.arriver();
-        System.out.println("le train est arrivé");
+
         try {
             sleep(ARRET_TRAIN);
         } catch (InterruptedException e) {
@@ -85,4 +84,26 @@ public class Train extends Thread{
         System.out.println("train est parti");
 
     }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public boolean isArreter() {
+        return arreter;
+    }
+
+    public int getVoyageurs() {
+        return voyageurs;
+    }
+
+    public int getNumVoie() {
+        return numVoie;
+    }
+
 }
