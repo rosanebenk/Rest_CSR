@@ -1,0 +1,9 @@
+internals\EspaceQuai.class
+internals\EspaceVente.class
+internals\Voyageur.class
+ressources\VoyageursRessource.class
+ressources\TrainsRessource.class
+main\Main.class
+internals\Train.class
+application\Gare.class
+database\InMemoryDatabase.class
