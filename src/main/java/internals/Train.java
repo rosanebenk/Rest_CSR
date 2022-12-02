@@ -2,6 +2,7 @@ package internals;
 
 public class Train extends Thread{
     private long id;
+    private String statut = "A - en route vers la gare";
     private static int NB_PLACE_LIBRE = 50;
     private static int ARRET_TRAIN = 500;
     private static int VITESSE_TRAIN = 250;
@@ -33,6 +34,7 @@ public class Train extends Thread{
 //        arreter = true;
 //        notifyAll();
 //        System.out.println(Thread.currentThread().getName() + "Un train est arrivé en gare , nb place prises " +voyageurs);
+        statut = "B - en attente d'une voie libre";
         this.numVoie=espaceQuai.affecterVoie(this);
         try {
             sleep(10000/VITESSE_TRAIN);
@@ -40,6 +42,7 @@ public class Train extends Thread{
             throw new RuntimeException(e);
         }
         arreter = true;
+        statut = "C - en gare";
         System.out.println(Thread.currentThread().getName() + " Un train est arrivé en gare , nbplace prises " +voyageurs);
 
     }
@@ -58,6 +61,7 @@ public class Train extends Thread{
 //    }
         System.out.println("debut de depart");
         espaceQuai.libererVoie(this.numVoie);
+        statut = "D - parti";
         arreter = false;
         System.out.println(Thread.currentThread().getName() +" Un train a quitté la gare , nbvoyageur : "+ voyageurs);
     }

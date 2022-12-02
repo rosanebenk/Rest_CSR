@@ -3,6 +3,7 @@ package internals;
 public class Voyageur extends Thread{
 
     private int id;
+    private String status = "A - en route vers la gare";
     public int billet;
     public EspaceVente espaceVente;
     public EspaceQuai espaceQuai;
@@ -22,6 +23,7 @@ public class Voyageur extends Thread{
 //            }
 //        }
         espaceVente.vendre();
+        status = "B - muni d'un billet";
         billet++;
         System.out.println(Thread.currentThread().getName() +"Le internals.Voyageur a acheté un billet , nb billet = "+ billet);
     }
@@ -29,6 +31,7 @@ public class Voyageur extends Thread{
     public synchronized void monterTrain(){
         if(billet == 1){
             this.espaceQuai.monter();
+            status = "C - monté dans un train";
             this.billet--;
             this.espaceVente.libererbillet();
             System.out.println("Le internals.Voyageur monte dans le train, ses billets :" +billet);
