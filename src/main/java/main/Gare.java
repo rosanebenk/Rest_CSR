@@ -1,4 +1,4 @@
-package application;
+package main;
 
 import internals.EspaceQuai;
 import internals.EspaceVente;
