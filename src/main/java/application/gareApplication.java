@@ -17,10 +17,10 @@ public class gareApplication extends Application {
     public Restlet createInboundRoot()
     {
         Router router = new Router(getContext());
-        router.attach("/Trains/", TrainsRessource.class);
-        router.attach("/Trains/{trainId}", TrainsRessource.class);
-        router.attach("/Voyageurs/", VoyageursRessource.class);
-        router.attach("/Voyageurs/{voyageurId}", VoyageursRessource.class);
+        router.attach("/trains", TrainsRessource.class);
+        router.attach("/trains/{trainId}", TrainsRessource.class);
+        router.attach("/voyageurs", VoyageursRessource.class);
+        router.attach("/voyageurs/{voyageurId}", VoyageursRessource.class);
         return router;
     }
 }

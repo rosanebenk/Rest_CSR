@@ -50,6 +50,7 @@ public class TrainsRessource extends ServerResource {
 
         // Save the user
         Train train = db_.createTrain();
+        train.start();
 
         // generate result
         JSONObject resultObject = new JSONObject();

@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InMemoryDatabase {
+    public EspaceVente espaceVente;
+    public EspaceQuai espaceQuai;
 
     /** User count (next id to give).*/
     private int voyageurCount_;
@@ -18,8 +20,7 @@ public class InMemoryDatabase {
     /** User Hashmap. */
     Map<Integer, Voyageur> voyageurs_;
     Map<Integer, Train> train_;
-    private EspaceQuai espaceQuai;
-    private EspaceVente espaceVente;
+
 
 
     public InMemoryDatabase()

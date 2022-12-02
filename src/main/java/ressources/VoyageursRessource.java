@@ -63,6 +63,7 @@ public class VoyageursRessource extends ServerResource {
 
         // Save the user
         Voyageur voyageur = db_.createVoyageur();
+        voyageur.start();
 
         // generate result
         JSONObject resultObject = new JSONObject();
