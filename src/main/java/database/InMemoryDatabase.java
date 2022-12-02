@@ -54,7 +54,7 @@ public class InMemoryDatabase {
         Train train = new Train(espaceQuai);
         train.setId(trainCount_);
         train_.put(trainCount_, train);
-        voyageurCount_++;
+        trainCount_++;
         return train;
     }
 
