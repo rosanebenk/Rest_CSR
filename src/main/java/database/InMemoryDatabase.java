@@ -18,12 +18,16 @@ public class InMemoryDatabase {
     /** User Hashmap. */
     Map<Integer, Voyageur> voyageurs_;
     Map<Integer, Train> train_;
+    private EspaceQuai espaceQuai;
+    private EspaceVente espaceVente;
 
 
     public InMemoryDatabase()
     {
         voyageurs_ = new HashMap<Integer, Voyageur>();
         train_ = new HashMap<Integer, Train>();
+        this.espaceQuai = new EspaceQuai();
+        this.espaceVente = new EspaceVente();
     }
 
     /**
@@ -36,7 +40,7 @@ public class InMemoryDatabase {
      */
     public synchronized Voyageur createVoyageur()
     {
-        Voyageur user = new Voyageur(new EspaceVente(), new EspaceQuai());
+        Voyageur user = new Voyageur(espaceVente, espaceQuai);
         user.setId(voyageurCount_);
         voyageurs_.put(voyageurCount_, user);
         voyageurCount_++;
@@ -44,9 +48,9 @@ public class InMemoryDatabase {
     }
 
 
-    public synchronized Train createTrain(Train train)
+    public synchronized Train createTrain()
     {
-        //Train train = new Train();
+        Train train = new Train(espaceQuai);
         train.setId(trainCount_);
         train_.put(trainCount_, train);
         voyageurCount_++;

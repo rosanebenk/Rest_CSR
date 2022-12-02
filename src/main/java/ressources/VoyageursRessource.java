@@ -60,8 +60,6 @@ public class VoyageursRessource extends ServerResource {
             throws Exception
     {
         JSONObject object = representation.getJsonObject();
-        String name = object.getString("name");
-        int age = object.getInt("age");
 
         // Save the user
         Voyageur voyageur = db_.createVoyageur();

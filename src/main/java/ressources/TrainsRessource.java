@@ -1,12 +1,19 @@
 package ressources;
 
 import database.InMemoryDatabase;
+import internals.EspaceQuai;
 import internals.Train;
+import internals.Voyageur;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class TrainsRessource extends ServerResource {
     private InMemoryDatabase db_;
@@ -20,16 +27,36 @@ public class TrainsRessource extends ServerResource {
     @Get("json")
     public Representation getTrain() throws Exception
     {
-        String trainIdString = (String) getRequest().getAttributes().get("trainId");
-        int trainIdString = Integer.valueOf(trainIdString);
-        train_ = db_.getTrain(trainIdString);
+        Collection<Train> trains = db_.getTrains();
+        Collection<JSONObject> jsonTrains = new ArrayList<JSONObject>();
 
-        JSONObject userObject = new JSONObject();
-        userObject.put("name", user_.getName());
-        userObject.put("age", user_.getAge());
-        userObject.put("id", user_.getId());
+        for (Train train : trains)
+        {
+            JSONObject current = new JSONObject();
+            current.put("id", train.getId());
+            current.put("url", getReference() + "/" + train.getId());
+            jsonTrains.add(current);
 
-        return new JsonRepresentation(userObject);
+        }
+        JSONArray jsonArray = new JSONArray(jsonTrains);
+        return new JsonRepresentation(jsonArray);
+    }
+
+    @Post("json")
+    public Representation createTrain(JsonRepresentation representation)
+            throws Exception
+    {
+        JSONObject object = representation.getJsonObject();
+
+        // Save the user
+        Train train = db_.createTrain();
+
+        // generate result
+        JSONObject resultObject = new JSONObject();
+        resultObject.put("id", train.getId());
+
+        JsonRepresentation result = new JsonRepresentation(resultObject);
+        return result;
     }
 
 }
