@@ -1,2 +1,4 @@
-package ressources;public class TrainsRessource {
+package ressources;
+
+public class TrainsRessource {
 }
