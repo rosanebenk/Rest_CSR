@@ -1,10 +1,12 @@
+package internals;
+
 import java.util.ArrayList;
 
 public class EspaceQuai {
     public final int VOIES = 2 ;
     //public int nbtrain;
     public int nbvoielibre;
-    //public ArrayList<Train> trains = new ArrayList<>();
+    //public ArrayList<internals.Train> trains = new ArrayList<>();
     public Train[] trains;
     public EspaceQuai() {
        // this.nbtrain = 0;
@@ -12,7 +14,7 @@ public class EspaceQuai {
         trains=new Train[VOIES];
     }
     public void monter(){
-//        for (Train train : trains){
+//        for (internals.Train train : trains){
 //            while (train.arreter || train.estPlein()){
 //                try {
 //                    this.wait();
@@ -26,7 +28,7 @@ public class EspaceQuai {
 //            notifyAll();
 //        }
 //        while(true){
-//            for (Train train : trains){
+//            for (internals.Train train : trains){
 //                if (train.arreter && !train.estPlein()){
 //                    train.voyageurMonte();
 //                    System.out.println( Thread.currentThread().getName() +" voyageurs dans le train " + train.voyageurs);
@@ -75,7 +77,7 @@ public class EspaceQuai {
         System.out.println(Thread.currentThread().getName() + " affectation , nb voie libre :" +nbvoielibre  );
         return numVoie;
     }
-//    public synchronized void libererVoie(Train t){
+//    public synchronized void libererVoie(internals.Train t){
 //        trains.remove(t);
 //        nbvoielibre++;
 //        //nbtrain--;

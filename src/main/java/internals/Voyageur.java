@@ -1,3 +1,8 @@
+package internals;
+
+import internals.EspaceQuai;
+import internals.EspaceVente;
+
 public class Voyageur extends Thread{
 
     private int billet;
@@ -20,7 +25,7 @@ public class Voyageur extends Thread{
 //        }
         espaceVente.vendre();
         billet++;
-        System.out.println(Thread.currentThread().getName() +"Le Voyageur a acheté un billet , nb billet = "+ billet);
+        System.out.println(Thread.currentThread().getName() +"Le internals.Voyageur a acheté un billet , nb billet = "+ billet);
     }
 
     public synchronized void monterTrain(){
@@ -28,7 +33,7 @@ public class Voyageur extends Thread{
             this.espaceQuai.monter();
             this.billet--;
             this.espaceVente.libererbillet();
-            System.out.println("Le Voyageur monte dans le train, ses billets :" +billet);
+            System.out.println("Le internals.Voyageur monte dans le train, ses billets :" +billet);
         }
     }
 

@@ -1,3 +1,10 @@
+package application;
+
+import internals.EspaceQuai;
+import internals.EspaceVente;
+import internals.Train;
+import internals.Voyageur;
+
 import java.util.ArrayList;
 
 public class Gare {

@@ -1,3 +1,7 @@
+package internals;
+
+import internals.EspaceQuai;
+
 public class Train extends Thread{
     private static int NB_PLACE_LIBRE = 50;
     private static int ARRET_TRAIN = 500;
