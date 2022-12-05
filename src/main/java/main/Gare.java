@@ -50,7 +50,7 @@ public class Gare {
                 t.join();
             }
 
-            System.out.println("la gare est fermée , tous les trains sont partis et ne reviendront pas bisous");
+            System.out.println("la gare est fermée , tous les trains sont partis et ne reviendront pas jusquà nouvel ordre");
            // System.exit(0);
 
         } catch (Exception e) {
