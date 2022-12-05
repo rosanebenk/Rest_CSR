@@ -5,6 +5,7 @@ import internals.EspaceQuai;
 import internals.Train;
 import internals.Voyageur;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
@@ -19,11 +20,21 @@ public class TrainsRessource extends ServerResource {
     private InMemoryDatabase db_;
     private Train train_;
 
+    /**
+     * Constructeur
+     */
     public TrainsRessource() {
         super();
         this.db_ = (InMemoryDatabase) getApplication().getContext().getAttributes()
                 .get("database");
     }
+
+    /**
+     *
+     * Retourne la liste de tout les trains
+     *
+     * @return  JSON representation des trains
+     */
     @Get("json")
     public Representation getTrain() throws Exception
     {
@@ -42,13 +53,19 @@ public class TrainsRessource extends ServerResource {
         return new JsonRepresentation(jsonArray);
     }
 
+    /**
+     *
+     * Ajoute un voyageur à la BDD
+     *
+     * @return  result
+     */
     @Post("json")
     public Representation createTrain(JsonRepresentation representation)
             throws Exception
     {
         JSONObject object = representation.getJsonObject();
 
-        // Save the user
+        // Save the train
         Train train = db_.createTrain();
         train.start();
 

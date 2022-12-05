@@ -32,10 +32,9 @@ public class VoyageursRessource extends ServerResource {
 
     /**
      *
-     * Returns the list of all the users
+     * Retourne la liste de tout les voyageurs
      *
-     * @return  JSON representation of the users
-     * @throws JSONException
+     * @return  JSON representation des voyageurs
      */
     @Get("json")
     public Representation getVoyageurs() throws JSONException
@@ -55,13 +54,19 @@ public class VoyageursRessource extends ServerResource {
         return new JsonRepresentation(jsonArray);
     }
 
+    /**
+     *
+     * Ajoute un voyageur à la BDD
+     *
+     * @return  result
+     */
     @Post("json")
     public Representation createVoyageur(JsonRepresentation representation)
             throws Exception
     {
         JSONObject object = representation.getJsonObject();
 
-        // Save the user
+        // Save the voyageur
         Voyageur voyageur = db_.createVoyageur();
         voyageur.start();
 

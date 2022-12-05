@@ -26,26 +26,27 @@ public class Gare {
 
     public Gare(){
         try {
+            //Initialisation des espaces quai et vente
             //espace1 = new EspaceVente();
-
            // quai = new EspaceQuai();
+
             this.quai = db.espaceQuai;
             this.espace1 = db.espaceVente;
-
+            //Initialisation des trains et des voyageurs
             for (int i = 0 ;i<NB_TRAIN; i++){
                 trains.add(new Train(quai));
             }
             for (int i = 0 ;i<NB_VOYAGEURS; i++){
                    voyageurs.add(new Voyageur(espace1,quai));
             }
-
+            //On execute le run() des classes voyageur et train pour chaque voyageur ou train initialisé
             for (Voyageur v : voyageurs){
                 v.start();
             }
             for (Train t: trains){
                 t.start();
             }
-
+            //"Regroupement" des trains quand ils sont tous parti
             for(Train t : trains){
                 t.join();
             }

@@ -6,37 +6,46 @@ public class EspaceVente extends Thread{
     public int billets;
     private final int BILLET_MAX = 50;
 
-//    public internals.EspaceVente(int billets) throws Exception {
-//        if (billets <= BILLET_MAX)
-//        this.billets = billets;
-//        else throw new Exception("Le nombre de billet max est 50");
-//    }
+    /**
+     * Constructeur
+     */
     public EspaceVente() {
 
             this.billets = BILLET_MAX;
 
     }
+
+    /**
+     * Vend un billet à un voyageur
+     */
     public synchronized void  vendre( ){
+        //Tant qu'il n'y a pas de billet disponible
         while (billets == 0){
             try{
+                //L'espace vente ne vand plus de billet
                 this.wait();
             }catch (InterruptedException e)
             {
                 e.printStackTrace();
             }
-        }
+        } //Fin de tant que
+        //Vend un billet
         billets --;
         System.out.println(Thread.currentThread().getName() + " Billet vendu, restant : " + billets);
         try{
+            //On met de l'attente le tant que le voyageur range son ticket et libère la place pour qu'un nouveau voyageur puisse acheter un ticket
             Thread.sleep(50);
-            // imprimer des billets
-            //billets = BILLET_MAX - billets;
         } catch (InterruptedException e){
                 e.printStackTrace();
         }
     }
+
+    /**
+     * Libère un billet en laissant un billet disponible en plus
+     */
     public synchronized void libererbillet(){
         billets++;
+        //Notifie pour qu'un voyageur puisse de nouveau acheter un billet
         notifyAll();
     }
 }
