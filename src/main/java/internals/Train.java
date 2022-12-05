@@ -44,6 +44,7 @@ public class Train extends Thread{
         arreter = true;
         statut = "C - en gare";
         System.out.println(Thread.currentThread().getName() + " Un train est arrivé en gare , nbplace prises " +voyageurs);
+        System.out.println("Statut du train " + statut);
 
     }
 
@@ -63,6 +64,7 @@ public class Train extends Thread{
         espaceQuai.libererVoie(this.numVoie);
         statut = "D - parti";
         arreter = false;
+        System.out.println("Statut du train " + statut);
         System.out.println(Thread.currentThread().getName() +" Un train a quitté la gare , nbvoyageur : "+ voyageurs);
     }
 
@@ -76,7 +78,8 @@ public class Train extends Thread{
     }
 
     public void run(){
-        System.out.println("train à l'approche");
+        //System.out.println("train à l'approche");
+        System.out.println("Statut du train " + statut);
         this.arriver();
 
         try {
@@ -85,7 +88,8 @@ public class Train extends Thread{
             throw new RuntimeException(e);
         }
         this.depart();
-        System.out.println("train est parti");
+        //System.out.println("train est parti");
+        System.out.println("Statut du train " + statut);
 
     }
 

@@ -1,5 +1,7 @@
 package internals;
 
+
+
 public class Voyageur extends Thread{
 
     private int id;
@@ -26,6 +28,7 @@ public class Voyageur extends Thread{
         status = "B - muni d'un billet";
         billet++;
         System.out.println(Thread.currentThread().getName() +"Le internals.Voyageur a acheté un billet , nb billet = "+ billet);
+        System.out.println("Statut du voyageur" + status);
     }
 
     public synchronized void monterTrain(){
@@ -35,10 +38,12 @@ public class Voyageur extends Thread{
             this.billet--;
             this.espaceVente.libererbillet();
             System.out.println("Le internals.Voyageur monte dans le train, ses billets :" +billet);
+            System.out.println("Statut du voyageur" + status);
         }
     }
 
     public void run(){
+        System.out.println("Statut du voyageur" + status);
         //Appel des fonctions
         // acheter billet
         this.acheterBillet();
