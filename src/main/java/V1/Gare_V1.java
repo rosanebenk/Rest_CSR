@@ -42,7 +42,6 @@ public class Gare_V1 {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
     public  static void main (String[] args){
         new Gare_V1();
