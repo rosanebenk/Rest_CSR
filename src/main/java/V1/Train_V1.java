@@ -2,7 +2,6 @@ package V1;
 
 public class Train_V1 extends Thread{
     private long id;
-    private String statut = "A - en route vers la gare";
     private static int NB_PLACE_LIBRE = 50;
     private static int ARRET_TRAIN = 500;
     private static int VITESSE_TRAIN = 250;
@@ -27,7 +26,6 @@ public class Train_V1 extends Thread{
      * Fais arriver un train sur une voie de l'espace quai
      */
     public synchronized void arriver(){
-        statut = "B - en attente d'une voie libre";
         //On affecte une voie au train
         this.numVoie= espaceQuaiV1.affecterVoie(this);
         try {
@@ -38,10 +36,7 @@ public class Train_V1 extends Thread{
         }
         //Le train s'arrete à quai
         arreter = true;
-        statut = "C - en gare";
         System.out.println(Thread.currentThread().getName() + " Un train est arrivé en gare , nbplace prises " +voyageurs);
-        System.out.println("Statut du train " + statut);
-
     }
 
     /**
@@ -51,10 +46,8 @@ public class Train_V1 extends Thread{
         System.out.println("debut de depart");
         //Le train libère la voie qui lui a été attribuée
         espaceQuaiV1.libererVoie(this.numVoie);
-        statut = "D - parti";
         //Le train n'est plus arreter
         arreter = false;
-        System.out.println("Statut du train " + statut);
         System.out.println(Thread.currentThread().getName() +" Un train a quitté la gare , nbvoyageur : "+ voyageurs);
     }
 
@@ -79,7 +72,6 @@ public class Train_V1 extends Thread{
      */
     public void run(){
         //System.out.println("train à l'approche");
-        System.out.println("Statut du train " + statut);
         //Le train arrive en gare
         this.arriver();
 
@@ -92,7 +84,6 @@ public class Train_V1 extends Thread{
         //Le train part de la gare
         this.depart();
         //System.out.println("train est parti");
-        System.out.println("Statut du train " + statut);
 
     }
 }
