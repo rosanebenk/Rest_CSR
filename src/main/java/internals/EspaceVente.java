@@ -22,7 +22,7 @@ public class EspaceVente extends Thread{
         //Tant qu'il n'y a pas de billet disponible
         while (billets == 0){
             try{
-                //L'espace vente ne vand plus de billet
+                //L'espace vente ne vend plus de billet
                 this.wait();
             }catch (InterruptedException e)
             {
