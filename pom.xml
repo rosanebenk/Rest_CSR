@@ -29,7 +29,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>${project.groupId}.mta.main.Main</mainClass>
+                            <mainClass>${project.groupId}.mta.V2.main.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
