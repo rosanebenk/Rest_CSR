@@ -88,7 +88,7 @@ public class EspaceQuai {
      * @param numVoie, le numéro de voie à libérer
      */
         public synchronized void libererVoie(int numVoie){
-            //On supprime le train du tableau de train (libérant ainsi son index)
+            //On "supprime" le train du tableau de train (libérant ainsi son index)
             trains[numVoie]=null;
             //On augmente de 1 le nombre de voie disponible
             nbvoielibre++;

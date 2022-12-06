@@ -2,8 +2,6 @@ package V1;
 
 
 public class Voyageur_V1 extends Thread{
-
-    private int id;
     //Retourne le nombre de billets du voyageur
     public int billet;
     public EspaceVente_V1 espaceVenteV1;

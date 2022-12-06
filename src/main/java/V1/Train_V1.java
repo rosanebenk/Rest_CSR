@@ -1,7 +1,6 @@
 package V1;
 
 public class Train_V1 extends Thread{
-    private long id;
     private static int NB_PLACE_LIBRE = 50;
     private static int ARRET_TRAIN = 500;
     private static int VITESSE_TRAIN = 250;
