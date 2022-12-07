@@ -37,7 +37,7 @@ public class Voyageur_V1 extends Thread{
         //le nombre de billet ne pourra jamais être supérieur à 1 car la fonction acheterBillet() dans le run() n'est appelée qu'une fois
         if(billet == 1){
             //Le voyageur "monte" dans l'espace quai, ce qui lui permet de monter dans un train s'il y en a un de disponible
-            this.espaceQuaiV1.monter();
+            this.espaceQuaiV1.chercherTrain();
             //On retire le billet du voyageur
             this.billet--;
             //On libère un billet à l'espace quai

@@ -1,6 +1,6 @@
 package V1;
 
-public class EspaceVente_V1 extends Thread{
+public class EspaceVente_V1 {
     public int billets;
     private final int BILLET_MAX = 50;
 

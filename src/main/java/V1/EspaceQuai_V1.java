@@ -18,7 +18,7 @@ public class EspaceQuai_V1 {
     /**
      * Indique aux trains stationnés sur le quai q'un voyageur monte dans l'un d'entre eux
      */
-    public void monter(){
+    public void chercherTrain(){
         while(true){
             //Pour chaque train sur le quai
             for (Train_V1 trainV1 : trainV1s){

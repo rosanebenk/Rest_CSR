@@ -2,7 +2,7 @@ package V2.internals;
 
 import static java.lang.Thread.sleep;
 
-public class EspaceVente extends Thread{
+public class EspaceVente {
     public int billets;
     private final int BILLET_MAX = 50;
 
